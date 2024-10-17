@@ -29,7 +29,7 @@
     <?php foreach ($caps as $cap): ?>
         <a href="cap/<?php echo $cap->id ?>">
             <li class="list-item item-task rounded-2 p-3 m-1 d-grid gap-1">
-                <b class="fw-bold">Temporada: <?php echo $cap->nombre?></b>
+                <b class="fw-bold">Temporada: <?php echo $cap->nombre ?></b>
                 <b class="fw-light"><?php echo $cap->titulo ?></b>
                 <?php if ($this->user): ?>
                     <a href="#">Editar</a> <!-- agregar confirmacion para los 2 -->
@@ -39,4 +39,7 @@
         </a>
     <?php endforeach ?>
 </ul>
+
+<script src="js/main.js"></script>
+
 <?php require 'templates/layout/footer.phtml' ?>

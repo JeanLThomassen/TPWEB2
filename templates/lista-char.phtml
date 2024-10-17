@@ -7,28 +7,32 @@
 </head>
 
 <?php require 'templates/layout/header.phtml' ?>
-<a href="add/chars">Añadir personaje</a>
+<button class="btn btn-dark m-1" onclick="agregarPersonaje()">Añadir personaje</button>
 <ul class="text-box-g rounded-2 p-3">
     <?php foreach ($chars as $char): ?>
         <li class="list-item item-task rounded-2 p-3 d-flex align-items-center">
-            <div class="d-flex h-100 W-100 p-2">
-                <a href="char/<?php echo $char->id ?>">
-                    <div class="d-flex flex-column col-11">
+            <a href="char/<?php echo $char->id ?>">
+                <div class="d-flex align-content-center">
+                    <div class="d-flex flex-column col-11 m-1">
                         <b class="h3 fw-bold d-grid gap-1"><?php echo $char->nombre ?></b>
                         <b class="fw-light"><?php echo $char->descripcion ?></b>
                         <div class="d-flex flex-row d-grid gap-1">
                             <?php if ($this->user): ?>
-                                <a href="#">Editar</a>
-                                <a href="delete/chars/<?php echo $char->id ?>">Eliminar</a>
+                                <button class="btn btn-primary m-1" href="#">Editar</button>
+                                <button type="button" class="btn btn-danger m-1" onclick="eliminarChar(<?php echo $char->id ?>)">Eliminar</button>
                             <?php endif ?>
                         </div>
                     </div>
-                    <div class="col-1">
+                    <div class="img-fluid col-1 m-1 rounded-2">
                         <img src="<?php echo $char->imagen; ?>" alt="<?php echo $char->nombre; ?>" style="max-width:100px; max-height:100px;">
                     </div>
-                </a>
-            </div>
+                </div>
+
+            </a>
         </li>
     <?php endforeach ?>
 </ul>
+
+<script src="js/main.js"></script>
+
 <?php require 'templates/layout/footer.phtml' ?>

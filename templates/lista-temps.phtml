@@ -8,17 +8,22 @@
 
 <?php require 'templates/layout/header.phtml' ?>
 <?php if ($this->user): ?>
-    <a href="add/season">Añadir temporada</a>
+    <button class="btn btn-dark m-1" href="add/season">Añadir temporada</button>
 <?php endif ?>
 <ul class="text-box-g rounded-2 p-3">
     <?php foreach ($temps as $temp): ?>
         <li class="list-item item-task rounded-2 p-3 m-1 d-grid gap-1">
             <a href="caps/temp/<?php echo $temp->id_temporada ?>"><b><?php echo $temp->nombre ?></b></a>
-            <?php if ($this->user): ?>
-                <a href="edit/season/<?php echo $temp->id_temporada ?>">Editar</a> <!-- agregar confirmacion para los 2 -->
-                <a href="delete/season/<?php echo $temp->id_temporada ?>">Eliminar</a> <!-- deberia ser un boton esto, no un hipervinculo feo -->
-            <?php endif ?>
+            <div class="d-flex">
+                <?php if ($this->user): ?>
+                    <button class="btn btn-primary m-1" onclick="editarTemporada(<?php echo $temp->id_temporada ?>)">Editar</button>
+                    <button class="btn btn-danger m-1" href="delete/season/<?php echo $temp->id_temporada ?>">Eliminar</button>
+                <?php endif ?>
+            </div>
         </li>
     <?php endforeach ?>
 </ul>
+
+<script src="js/main.js"></script>
+
 <?php require 'templates/layout/footer.phtml' ?>
