@@ -8,15 +8,15 @@
 
 <?php require 'templates/layout/header.phtml' ?>
 <?php if ($this->user): ?>
-    <a href="#">Añadir temporada</a>
+    <a href="add/season">Añadir temporada</a>
 <?php endif ?>
 <ul class="text-box-g rounded-2 p-3">
     <?php foreach ($temps as $temp): ?>
         <li class="list-item item-task rounded-2 p-3 m-1 d-grid gap-1">
-            <a href="caps/temp/<?php echo $temp->id ?>"><b><?php echo $temp->nombre ?></b></a>
+            <a href="caps/temp/<?php echo $temp->id_temporada ?>"><b><?php echo $temp->nombre ?></b></a>
             <?php if ($this->user): ?>
-                <a href="edit/season/<?php echo $temp->id ?>">Editar</a> <!-- agregar confirmacion para los 2 -->
-                <a href="delete/season/<?php echo $temp->id ?>">Eliminar</a> <!-- deberia ser un boton esto, no un hipervinculo feo -->
+                <a href="edit/season/<?php echo $temp->id_temporada ?>">Editar</a> <!-- agregar confirmacion para los 2 -->
+                <a href="delete/season/<?php echo $temp->id_temporada ?>">Eliminar</a> <!-- deberia ser un boton esto, no un hipervinculo feo -->
             <?php endif ?>
         </li>
     <?php endforeach ?>

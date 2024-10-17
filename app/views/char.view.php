@@ -7,10 +7,13 @@ class CharView{
         $this->user = $user;
     }
     
-    public function showChars($chars){
+    public function showChars($chars,$error=''){
         require 'templates/lista-char.phtml';
     }
     public function showChar($char){
         require 'templates/char.phtml';
+    }
+    public function showFormChar($error=''){
+        require_once 'templates/form-addchar.phtml';
     }
 }

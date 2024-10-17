@@ -5,7 +5,7 @@ class CapView{
     public function __construct($user) {
         $this->user = $user;
     }
-    public function showCaps($caps,$temps){
+    public function showCaps($caps,$temps,$error=''){
         require 'templates/lista-caps.phtml';
     }
     public function showCap($cap){
@@ -13,5 +13,8 @@ class CapView{
     }
     public function showHome(){
         require 'templates/home.phtml';
+    }
+    public function showFormCap($temps,$error=''){
+        require_once 'templates/form-addcap.phtml';
     }
 }

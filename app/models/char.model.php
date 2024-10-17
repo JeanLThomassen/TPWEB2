@@ -20,4 +20,18 @@ class CharModel {
         $char = $query->fetchAll(PDO::FETCH_OBJ);
         return $char;
     }
+
+    public function addChar($nombre, $descripcion, $imagen) { 
+        $query = $this->db->prepare('INSERT INTO personajes(nombre, descripcion, imagen) VALUES (?, ?, ?)');
+        $query->execute([$nombre, $descripcion, $imagen]);
+    
+        $id = $this->db->lastInsertId();
+    
+        return $id;
+    }
+
+    public function deleteChar($id){
+        $query = $this->db->prepare('DELETE FROM personajes WHERE id = ?');
+        $query->execute([$id]);
+    }
 }

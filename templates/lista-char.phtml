@@ -7,6 +7,7 @@
 </head>
 
 <?php require 'templates/layout/header.phtml' ?>
+<a href="add/chars">Añadir personaje</a>
 <ul class="text-box-g rounded-2 p-3">
     <?php foreach ($chars as $char): ?>
         <li class="list-item item-task rounded-2 p-3 d-flex align-items-center">
@@ -18,7 +19,7 @@
                         <div class="d-flex flex-row d-grid gap-1">
                             <?php if ($this->user): ?>
                                 <a href="#">Editar</a>
-                                <a href="#">Eliminar</a>
+                                <a href="delete/chars/<?php echo $char->id ?>">Eliminar</a>
                             <?php endif ?>
                         </div>
                     </div>

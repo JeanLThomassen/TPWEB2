@@ -10,4 +10,8 @@ class SeasonView{
     public function showSeasons($temps){
         require 'templates/lista-temps.phtml';
     }
+
+    public function showFormSeason($error=''){
+        require_once 'templates/form-addseason.phtml';
+    }
 }

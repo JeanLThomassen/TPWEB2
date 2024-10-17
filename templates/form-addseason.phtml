@@ -1,0 +1,14 @@
+<?php require_once 'templates/layout/header.phtml'?>
+<?php if ($error): ?>
+    <div class='alert alert-danger' role='alert'>
+        <?= $error ?>
+    </div>
+<?php endif ?>
+<form method='post' action="addseason">
+    <div class='form-group'>
+        <label for='nombre'>Nombre</label>
+        <input type='nombre' class='form-control' id='nombre' name='nombre' placeholder="Ingrese el nombre de la temporada" required>
+    </div>
+    <button type='submit' class='btn btn-primary'>Añadir</button>
+</form>
+<?php require_once 'templates/layout/footer.phtml'?>

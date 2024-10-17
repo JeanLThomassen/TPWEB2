@@ -16,6 +16,23 @@ class SeasonController {
         $temps = $this->model->getSeasons();
         return $this->view->showSeasons($temps);
     }
+
+    public function showFormSeason(){
+        return $this->view->showFormSeason();
+    }
+    
+    public function addSeason() {
+        if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {
+            return $this->view->showFormSeason('Falta completar el nombre');
+        }
+    
+        $nombre = $_POST['nombre'];
+    
+        $id = $this->model->addSeason($nombre);
+    
+        // redirijo al home (también podriamos usar un método de una vista para motrar un mensaje de éxito)
+        header('Location: ' . BASE_URL);
+    }
     public function deleteSeason($id){
         $season = $this->model->getSeason($id);
         if (!$season) {

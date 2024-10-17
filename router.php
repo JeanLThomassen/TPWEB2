@@ -40,14 +40,12 @@ $params = explode('/', $action);
 switch ($params[0]) {
     case 'home':
         sessionAuthMiddleware($res);
-        //verifyAuthMiddleware($res);
         $controller = new CapController($res);
         $controller->showHome();
         break;
 
     case 'caps':
         sessionAuthMiddleware($res);
-        //verifyAuthMiddleware($res);
         $controller = new CapController($res);
         if (empty($params[1])) {
             $controller->showCaps();
@@ -58,28 +56,24 @@ switch ($params[0]) {
 
     case 'cap':
         sessionAuthMiddleware($res);
-        //verifyAuthMiddleware($res);
         $controller = new CapController($res);
         $controller->showCap($params[1]);
         break;
 
     case 'seasons':
         sessionAuthMiddleware($res);
-        //verifyAuthMiddleware($res);
         $controller = new SeasonController($res);
         $controller->showSeasons();
         break;
 
     case 'chars':
         sessionAuthMiddleware($res);
-        //verifyAuthMiddleware($res);
         $controller = new CharController($res);
         $controller->showChars();
         break;
 
     case 'char':
         sessionAuthMiddleware($res);
-        //verifyAuthMiddleware($res);
         $controller = new CharController($res);
         $controller->showChar($params[1]);
         break;
@@ -106,26 +100,44 @@ switch ($params[0]) {
 
     case 'add':
         sessionAuthMiddleware($res);
-        //verifyAuthMiddleware($res);
         $def = 'caps';
         if (!empty($params[1])) {
             $def = $params[1];
         }
         switch ($def) {
             case 'caps':
-                
+                $controller = new CapController($res);
+                $controller->showFormCap();
                 break;
             case 'season':
-                
+                $controller = new SeasonController($res);
+                $controller->showFormSeason();
                 break;
             case 'chars':
-            
+                $controller = new CharController($res);
+                $controller->showFormChar();
                 break;
             default:
                 //caps
                 break;
         }
-    
+        break;
+
+    case 'addcap':
+        $controller = new CapController($res);
+        $controller->addCap();
+        break;
+
+    case 'addchar':
+        $controller = new CharController($res);
+        $controller->addChar();
+        break;
+
+    case 'addseason':
+        $controller = new SeasonController($res);
+        $controller->addSeason();
+        break;
+
     case 'delete':
         sessionAuthMiddleware($res);
         //verifyAuthMiddleware($res);
@@ -135,14 +147,16 @@ switch ($params[0]) {
         }
         switch ($def) {
             case 'caps':
-                # code...
+                $controller = new CapController($res);
+                $controller->deleteCap($params[2]);
                 break;
             case 'season':
                 $controller = new SeasonController($res);
                 $controller->deleteSeason($params[2]);
                 break;
             case 'chars':
-
+                $controller = new CharController($res);
+                $controller->deleteChar($params[2]);
                 break;
             default:
                 //caps
@@ -175,5 +189,3 @@ switch ($params[0]) {
         echo "404 Page Not Found"; // deberiamos llamar a un controlador que maneje esto
         break;
 }
-// bajoterra/caps = todos los capitulos
-// bajoterra/caps/temp1 = caps temp 1
