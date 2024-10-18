@@ -4,19 +4,21 @@
         <?= $error ?>
     </div>
 <?php endif ?>
-<form method='post' action="addcap">
+<?php foreach ($cap as $cap):?>
+<form method='post' action="editcap/<?php echo  $cap->id ?>">
     <div class='form-group'>
         <label for='titulo'>Titulo</label>
-        <input type='titulo' class='form-control' id='titulo' name='titulo' placeholder="Ingrese el titulo del capitulo" required>
+        <input type='titulo' class='form-control' id='titulo' name='titulo' placeholder="Titulo del capitulo" value="<?php echo $cap->titulo?>" required>
     </div>
     <div class='form-group'>
         <label for='descripcion'>Descripción</label>
-        <input type='descripcion' class='form-control' id='descripcion' name='descripcion' placeholder="Ingrese la descripcion del capitulo" required>
+        <input type='descripcion' class='form-control' id='descripcion' name='descripcion' placeholder="Descripcion del capitulo" value="<?php echo $cap->descripcion?>" required>
     </div>
     <div class='form-group'>
         <label for='video'>Video</label>
-        <input type='video' class='form-control' id='video' name='video' placeholder="Ingrese la url de video" required>
+        <input type='video' class='form-control' id='video' name='video' placeholder="Url de video" value="<?php echo $cap->video?>" required>
     </div>
+    
     <div class='form-group'>
         <label for='video'>Temporada</label>
         <select name="temporada" id="[]">
@@ -25,6 +27,7 @@
             <?php endforeach ?>
         </select>
     </div>
-    <button type='submit' class='btn btn-primary'>Añadir</button>
+    <button type='submit' class='btn btn-primary'>Editar</button>
 </form>
+<?php endforeach?>
 <?php require_once 'templates/layout/footer.phtml'?>

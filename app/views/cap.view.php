@@ -17,4 +17,7 @@ class CapView{
     public function showFormCap($temps,$error=''){
         require_once 'templates/form-addcap.phtml';
     }
+    public function showFormEditCap($temps,$cap,$error=''){
+        require_once 'templates/form-editcap.phtml';
+    }
 }

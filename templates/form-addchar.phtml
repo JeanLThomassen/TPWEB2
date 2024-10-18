@@ -1,24 +1,22 @@
-<?php require_once 'templates/layout/header.phtml' ?>
+<?php require_once 'templates/layout/header.phtml'?>
 <?php if ($error): ?>
     <div class='alert alert-danger' role='alert'>
         <?= $error ?>
     </div>
 <?php endif ?>
 <form method='post' action="addchar">
-    <div class="text-box-g m-2 p-3 rounded">
-        <div class='form-group m-2'>
-            <label for='nombre'>Nombre</label>
-            <input type='nombre' class='form-control' id='nombre' name='nombre' placeholder="Ingrese el nombre del personaje" required>
-        </div>
-        <div class='form-group m-2'>
-            <label for='descripcion'>Descripción</label>
-            <input type='descripcion' class='form-control' id='descripcion' name='descripcion' placeholder="Ingrese la descripcion del personaje" required>
-        </div>
-        <div class='form-group m-2'>
-            <label for='imagen'>Imagen</label>
-            <input type='imagen' class='form-control' id='imagen' name='imagen' placeholder="Ingrese la url de la imagen" required>
-        </div>
-        <button type='submit' class='btn btn-primary m-2'>Añadir</button>
+    <div class='form-group'>
+        <label for='nombre'>Nombre</label>
+        <input type='nombre' class='form-control' id='nombre' name='nombre' placeholder="Ingrese el nombre del personaje" required>
     </div>
+    <div class='form-group'>
+        <label for='descripcion'>Descripción</label>
+        <input type='descripcion' class='form-control' id='descripcion' name='descripcion' placeholder="Ingrese la descripcion del personaje" required>
+    </div>
+    <div class='form-group'>
+        <label for='imagen'>Imagen</label>
+        <input type='imagen' class='form-control' id='imagen' name='imagen' placeholder="Ingrese la url de la imagen" required>
+    </div>
+    <button type='submit' class='btn btn-primary'>Añadir</button>
 </form>
-<?php require_once 'templates/layout/footer.phtml' ?>
+<?php require_once 'templates/layout/footer.phtml'?>

@@ -1,14 +1,10 @@
 <?php
 
-class SeasonModel
-{
-    private $db;
-    public function __construct()
-    {
-        $this->db = new PDO('mysql:host=localhost;dbname=bdd-bajoterra;charset=utf8', 'root', '');
-    }
-    public function getSeasons()
-    {
+require_once './app/models/model.php';
+class SeasonModel extends Model{
+
+
+    public function getSeasons(){
         $query = $this->db->prepare('SELECT * FROM temporada');
         $query->execute();
 
@@ -16,8 +12,7 @@ class SeasonModel
         return $temps;
     }
 
-    public function getSeason($id)
-    {
+    public function getSeason($id){
         $query = $this->db->prepare('SELECT * FROM temporada WHERE id_temporada = ?');
         $query->execute([$id]);
 
@@ -34,9 +29,13 @@ class SeasonModel
         return $id;
     }
 
-    public function deleteSeason($id)
-    {
+    public function deleteSeason($id){
         $query = $this->db->prepare('DELETE FROM temporada WHERE id_temporada = ?');
         $query->execute([$id]);
+    }
+
+    public function editSeason($id,$nombre){
+        $query = $this->db->prepare('UPDATE temporada SET nombre = ? WHERE id_temporada = ?');
+        $query->execute([$nombre, $id]);
     }
 }

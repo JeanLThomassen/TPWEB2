@@ -14,4 +14,8 @@ class SeasonView{
     public function showFormSeason($error=''){
         require_once 'templates/form-addseason.phtml';
     }
+
+    public function showFormEditSeason($temps,$error=''){
+        require_once 'templates/form-editseason.phtml';
+    }
 }

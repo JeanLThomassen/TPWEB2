@@ -23,11 +23,13 @@ class CharController {
     }
 
     public function showFormChar(){
-         $this->view->showFormChar();
-         echo 'hola';
-         return;
+        return $this->view->showFormChar();
     }
 
+    public function showFormEditChar($id){
+        $char = $this->model->getChar($id);
+        return $this->view->showFormEditChar($char);
+    }
     public function addChar() {
         if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {
             return $this->view->showFormChar('Falta completar el nombre');
@@ -47,8 +49,7 @@ class CharController {
     
         $id = $this->model->addChar($nombre, $descripcion, $imagen);
     
-        // redirijo al home (también podriamos usar un método de una vista para motrar un mensaje de éxito)
-        header('Location: ' . BASE_URL);
+        header('Location: ' . BASE_URL . 'chars');
     }
 
     public function deleteChar($id){
@@ -58,6 +59,27 @@ class CharController {
         }
 
         $this->model->deleteChar($id);
-        header('Location: ' . BASE_URL);
+        header('Location: ' . BASE_URL . 'chars');
+    }
+
+    public function editChar($id){
+        $char = $this->model->getChar($id);
+        if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {
+            return $this->view->showFormEditChar($char,'Falta completar el nombre');
+        }
+        if (!isset($_POST['descripcion']) || empty($_POST['descripcion'])) {
+            return $this->view->showFormEditChar($char,'Falta completar la descripcion');
+        }
+        if (!isset($_POST['imagen']) || empty($_POST['imagen'])) {
+            return $this->view->showFormEditChar($char,'Falta completar la imagen');
+        }
+    
+        $nombre = $_POST['nombre'];
+        $descripcion = $_POST['descripcion'];
+        $imagen = $_POST['imagen'];
+
+        $this->model->editChar($id,$nombre,$descripcion,$imagen);
+    
+        header('Location: ' . BASE_URL . 'chars');
     }
 }

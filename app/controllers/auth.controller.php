@@ -25,28 +25,24 @@ class AuthController{
         $password = $_POST['password'];
 
         $userFromDB = $this->model->getUserByName($name);
-        // pass = 123456
         // name = admin
+        // pass = 123456
         if($userFromDB && password_verify($password, $userFromDB->password)){
-            // Guardo en la sesión el ID del usuario
             session_start();
             $_SESSION['ID_USER'] = $userFromDB->id;
             $_SESSION['NAME_USER'] = $userFromDB->name;
     
-            // Redirijo al home
             header('Location: ' . BASE_URL);
         } else {
-            return $this->view->showLogin('Credenciales incorrectas');
+            return $this->view->showLogin('Nombre o contraseña incorrectas');
         }
     }
 
-    public function showRegister(){
-        return $this->view->showRegister();
-    }
 
     public function logout() {
-        session_start(); // Va a buscar la cookie
-        session_destroy(); // Borra la cookie que se buscó
+        session_start();
+        session_destroy();
         header('Location: ' . BASE_URL);
     }
+
 }

@@ -20,6 +20,11 @@ class SeasonController {
     public function showFormSeason(){
         return $this->view->showFormSeason();
     }
+
+    public function showFormEditSeason($id){
+        $temps = $this->model->getSeason($id);
+        return $this->view->showFormEditSeason($temps);
+    }
     
     public function addSeason() {
         if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {
@@ -30,16 +35,27 @@ class SeasonController {
     
         $id = $this->model->addSeason($nombre);
     
-        // redirijo al home (también podriamos usar un método de una vista para motrar un mensaje de éxito)
-        header('Location: ' . BASE_URL);
+        header('Location: ' . BASE_URL . 'seasons');
     }
     public function deleteSeason($id){
         $season = $this->model->getSeason($id);
         if (!$season) {
-            // mostrar error
+            return $this->view->showFormEditSeason('No existe la temporada');
         }
-
         $this->model->deleteSeason($id);
-        header('Location: ' . BASE_URL);
+        header('Location: ' . BASE_URL . 'seasons');
+    }
+
+    public function editSeason($id){
+        $temps = $this->model->getSeason($id);
+        if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {
+            return $this->view->showFormEditSeason($temps,'Falta completar el nombre');
+        }
+    
+        $nombre = $_POST['nombre'];
+
+        $this->model->editSeason($id,$nombre);
+    
+        header('Location: ' . BASE_URL . 'seasons');
     }
 }

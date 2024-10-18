@@ -1,10 +1,8 @@
 <?php
 
-class CharModel {
-    private $db;
-    public function __construct(){
-        $this->db = new PDO('mysql:host=localhost;dbname=bdd-bajoterra;charset=utf8', 'root', '');
-    }
+require_once './app/models/model.php';
+class CharModel extends Model{
+
     public function getChars(){
         $query = $this->db->prepare('SELECT * FROM personajes');
         $query->execute();
@@ -33,5 +31,10 @@ class CharModel {
     public function deleteChar($id){
         $query = $this->db->prepare('DELETE FROM personajes WHERE id = ?');
         $query->execute([$id]);
+    }
+
+    public function editChar($id,$nombre,$descripcion,$imagen){
+        $query = $this->db->prepare('UPDATE personajes SET nombre = ?, descripcion = ?, imagen = ? WHERE id = ?');
+        $query->execute([$nombre,$descripcion,$imagen,$id]);
     }
 }

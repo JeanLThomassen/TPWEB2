@@ -1,10 +1,7 @@
 <?php
 
-class CapModel {
-    private $db;
-    public function __construct(){
-        $this->db = new PDO('mysql:host=localhost;dbname=bdd-bajoterra;charset=utf8', 'root', '');
-    }
+require_once './app/models/model.php';
+class CapModel extends Model{
 
     public function getCaps(){
         $query = $this->db->prepare('SELECT * FROM capitulos INNER JOIN temporada ON capitulos.temporada = temporada.id_temporada');
@@ -34,6 +31,11 @@ class CapModel {
     public function deleteCap($id){
         $query = $this->db->prepare('DELETE FROM capitulos WHERE id = ?');
         $query->execute([$id]);
+    }
+
+    public function editCap($titulo,$descripcion,$video,$temporada,$id){
+        $query = $this->db->prepare('UPDATE capitulos SET titulo = ?,  descripcion = ?, video = ?, temporada = ? WHERE id = ?');
+        $query->execute([$titulo, $descripcion, $video, $temporada, $id]);
     }
 
     public function getCapXSeason($id){

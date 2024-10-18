@@ -1,11 +1,6 @@
 <?php
-
-class AuthModel{
-    private $db;
-
-    public function __construct(){
-        $this->db = new PDO('mysql:host=localhost;dbname=bdd-bajoterra;charset=utf8', 'root', '');
-    }
+require_once './app/models/model.php';
+class AuthModel extends Model{
 
     public function getUserByName($name){
         $query = $this->db->prepare('SELECT * FROM usuarios WHERE name = ?');

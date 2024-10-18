@@ -1,7 +1,6 @@
 <?php
 require_once 'libs/response.php';
 require_once 'app/middlewares/session.auth.middleware.php';
-// require_once 'app/middlewares/verify.auth.middleware.php';
 require_once 'app/controllers/cap.controller.php';
 require_once 'app/controllers/season.controller.php';
 require_once 'app/controllers/char.controller.php';
@@ -30,9 +29,9 @@ if (!empty( $_GET['action'])) {
 // char   -> CharController->showChar();
 // login   -> AuthController->showLogin():
 // register   -> AuthController->showRegister():
-// add   -> (depende el caso)Controller->add(depende el caso)();
+// add   -> (depende el caso)Controller->add(depende el caso, muestra el formulario para añadir un item)();
 // delete   -> (depende el caso)Controller->delete(depende el caso)();
-// edit   -> (depende el caso)Controller->edit(depende el caso)();
+// edit   -> (depende el caso)Controller->edit(depende el caso, muestra el formulario para editar un item)();
 
 // parsea la accion para separar accion real de parametros
 $params = explode('/', $action);
@@ -93,11 +92,6 @@ switch ($params[0]) {
         $controller->logout();
         break;
 
-    case 'register':
-        $controller = new AuthController();
-        $controller->showRegister();
-        break;
-
     case 'add':
         sessionAuthMiddleware($res);
         $def = 'caps';
@@ -140,7 +134,6 @@ switch ($params[0]) {
 
     case 'delete':
         sessionAuthMiddleware($res);
-        //verifyAuthMiddleware($res);
         $def = 'caps';
         if (!empty($params[1])) {
             $def = $params[1];
@@ -159,33 +152,53 @@ switch ($params[0]) {
                 $controller->deleteChar($params[2]);
                 break;
             default:
-                //caps
+                $controller = new CapController($res);
+                $controller->deleteCap($params[2]);
                 break;
         }
+        break;
 
     case 'edit':
         sessionAuthMiddleware($res);
-        //verifyAuthMiddleware($res);
         $def = 'caps';
         if (!empty($params[1])) {
             $def = $params[1];
         }
         switch ($def) {
             case 'caps':
-                
+                $controller = new CapController($res);
+                $controller->showFormEditCap($params[2]);
                 break;
             case 'season':
-                
+                $controller = new SeasonController($res);
+                $controller->showFormEditSeason($params[2]);
                 break;
             case 'chars':
-            
+                $controller = new CharController($res);
+                $controller->showFormEditChar($params[2]);
                 break;
             default:
-                //caps
+                $controller = new CapController($res);
+                $controller->showFormEditCap($params[2]);
                 break;
         }
-
+        break;
+    
+    case 'editcap':
+        $controller = new CapController($res);
+        $controller->editCap($params[1]);
+        break;
+    case 'editseason':
+        $controller = new SeasonController($res);
+        $controller->editSeason($params[1]);
+        break;
+    case 'editchar':
+        $controller = new CharController($res);
+        $controller->editChar($params[1]);
+        break;
     default: 
-        echo "404 Page Not Found"; // deberiamos llamar a un controlador que maneje esto
+        sessionAuthMiddleware($res);
+        $controller = new CapController($res);
+        $controller->showHome();
         break;
 }

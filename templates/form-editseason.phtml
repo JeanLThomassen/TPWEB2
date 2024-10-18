@@ -1,0 +1,16 @@
+<?php require_once 'templates/layout/header.phtml'?>
+<?php if ($error): ?>
+    <div class='alert alert-danger' role='alert'>
+        <?= $error ?>
+    </div>
+<?php endif ?>
+<?php foreach ($temps as $temp):?>
+<form method='post' action="editseason/<?php echo $temp->id_temporada?>">
+    <div class='form-group'>
+        <label for='nombre'>Nombre</label>
+        <input type='nombre' class='form-control' id='nombre' name='nombre' placeholder="Nombre de la temporada" value="<?php echo $temp->nombre?>" required>
+    </div>
+    <button type='submit' class='btn btn-primary'>Editar</button>
+</form>
+<?php endforeach?>
+<?php require_once 'templates/layout/footer.phtml'?>

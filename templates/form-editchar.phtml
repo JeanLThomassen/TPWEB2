@@ -1,0 +1,24 @@
+<?php require_once 'templates/layout/header.phtml'?>
+<?php if ($error): ?>
+    <div class='alert alert-danger' role='alert'>
+        <?= $error ?>
+    </div>
+<?php endif ?>
+<?php foreach ($char as $char):?>
+<form method='post' action="editchar/<?php echo $char->id?>">
+    <div class='form-group'>
+        <label for='nombre'>Nombre</label>
+        <input type='nombre' class='form-control' id='nombre' name='nombre' placeholder="Nombre del capitulo" value="<?php echo $char->nombre?>" required>
+    </div>
+    <div class='form-group'>
+        <label for='descripcion'>Descripción</label>
+        <input type='descripcion' class='form-control' id='descripcion' name='descripcion' placeholder="Descripcion del capitulo" value="<?php echo $char->descripcion?>" required>
+    </div>
+    <div class='form-group'>
+        <label for='imagen'>Video</label>
+        <input type='imagen' class='form-control' id='imagen' name='imagen' placeholder="Url de la imagen" value="<?php echo $char->imagen?>" required>
+    </div>
+    <button type='submit' class='btn btn-primary'>Editar</button>
+</form>
+<?php endforeach?>
+<?php require_once 'templates/layout/footer.phtml'?>
