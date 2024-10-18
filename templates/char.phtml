@@ -9,11 +9,11 @@
 <?php require 'templates/layout/header.phtml' ?>
 <?php foreach ($char as $char): ?>
     <div class="container text-box-g rounded-4 p-3">
-        <p class="h1 p-2 d-flex justify-content-center"><?php echo $char->nombre ?></p>
-        <p class="p-4"><?php echo $char->descripcion ?></p>
-        <div class="d-flex justify-content-center col-12 mt-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <p class="h1 p-2 flex-grow-1 text-center"><?php echo $char->nombre ?></p>
             <img src="<?php echo $char->imagen; ?>" alt="<?php echo $char->nombre; ?>" class="rounded-4" style="max-width:300px; max-height:300px;">
         </div>
+        <p class="p-4"><?php echo $char->descripcion ?></p>
     </div>
 <?php endforeach ?>
 <?php require 'templates/layout/footer.phtml' ?>

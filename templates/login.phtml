@@ -1,8 +1,8 @@
-<?php require 'templates/layout/login-header.phtml' ?>
+m <?php require 'templates/layout/login-header.phtml' ?>
 
-<div class="d-flex justify-content-center flex-column">
-    <form method='post' action='login'>
-        <div class="text-box-g m-2 p-3 rounded w-50">
+<div class="d-flex justify-content-center">
+    <form method='post' action='login' class="text-center w-50"> <!-- Ajusta el ancho aquí -->
+        <div class="text-box-g m-2 p-3 rounded">
             <div class='form-group m-2'>
                 <label for='name'>Usuario</label>
                 <input type='name' class='form-control' id='name' name='name' placeholder="Ingrese su usuario" required>
@@ -11,16 +11,17 @@
                 <label for='password'>Contraseña</label>
                 <input type='password' class='form-control' id='password' name='password' placeholder="Ingrese su contraseña" required>
             </div>
-            <div class="d-flex flex-row align-items-center">
+            <div class="d-flex flex-column align-items-center">
                 <button type='submit' class='btn btn-primary m-2'>Iniciar Sesion</button>
             </div>
         </div>
     </form>
 
     <?php if ($error): ?>
-        <div class='alert alert-danger w-50 m-2' role='alert'>
+        <div class='alert alert-danger w-50 m-2' role='alert'> <!-- Ajusta el ancho aquí -->
             <?= $error ?>
         </div>
     <?php endif ?>
 </div>
+
 <?php require 'templates/layout/footer.phtml' ?>
