@@ -8,7 +8,7 @@
 
 <?php require 'templates/layout/header.phtml' ?>
 <?php if ($this->user): ?>
-    <button class="btn btn-dark m-1" href="add/season">Añadir temporada</button>
+    <button class="btn btn-dark m-1" onclick="addTemp()">Añadir temporada</button>
 <?php endif ?>
 <ul class="text-box-g rounded-2 p-3">
     <?php foreach ($temps as $temp): ?>
@@ -16,8 +16,8 @@
             <a href="caps/temp/<?php echo $temp->id_temporada ?>"><b><?php echo $temp->nombre ?></b></a>
             <div class="d-flex">
                 <?php if ($this->user): ?>
-                    <button class="btn btn-primary m-1" onclick="editarTemporada(<?php echo $temp->id_temporada ?>)">Editar</button>
-                    <button class="btn btn-danger m-1" href="delete/season/<?php echo $temp->id_temporada ?>">Eliminar</button>
+                    <button class="btn btn-primary m-1" onclick="editTemp(<?php echo $temp->id_temporada ?>)">Editar</button>
+                    <button class="btn btn-danger m-1" onclick="deleteTemp(<?php echo $temp->id_temporada ?>)">Eliminar</button>
                 <?php endif ?>
             </div>
         </li>
