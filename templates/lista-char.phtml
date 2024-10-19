@@ -10,9 +10,9 @@
 <?php if ($this->user): ?>
     <button class="btn btn-dark m-1" onclick="addCharact()">Añadir personaje</button>
 <?php endif ?>
-<ul class="text-box-g rounded-2 p-3 d-flex flex-wrap justify-content-center">
+<ul class="scrollable-list text-box-g rounded-2 p-3 d-flex flex-wrap justify-content-center">
     <?php foreach ($chars as $char): ?>
-        <li class="list-item item-task rounded-2 p-3 m-2 d-flex flex-column col-12 col-sm-6 col-md-4 col-lg-3">
+        <li class="list-item item-task rounded-2 p-3 m-2 d-flex flex-column col-12 col-sm-6 col-md-4 col-lg-4">
             <div class="d-flex flex-column align-items-center">
                 <a href="char/<?php echo $char->id ?>" class="text-center">
                     <img src="<?php echo $char->imagen; ?>" alt="<?php echo $char->nombre; ?>" class="img-fluid rounded-circle" style="max-width:100px; max-height:100px;">
