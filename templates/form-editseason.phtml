@@ -1,16 +1,28 @@
-<?php require_once 'templates/layout/header.phtml'?>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<?php require_once 'templates/layout/header.phtml' ?>
 <?php if ($error): ?>
     <div class='alert alert-danger' role='alert'>
         <?= $error ?>
     </div>
 <?php endif ?>
-<?php foreach ($temps as $temp):?>
-<form method='post' action="editseason/<?php echo $temp->id_temporada?>">
-    <div class='form-group'>
-        <label for='nombre'>Nombre</label>
-        <input type='nombre' class='form-control' id='nombre' name='nombre' placeholder="Nombre de la temporada" value="<?php echo $temp->nombre?>" required>
-    </div>
-    <button type='submit' class='btn btn-primary'>Editar</button>
-</form>
-<?php endforeach?>
-<?php require_once 'templates/layout/footer.phtml'?>
+<?php foreach ($temps as $temp): ?>
+    <form method='post' action="editseason/<?php echo $temp->id_temporada ?>">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-box-g m-2 p-3 rounded w-50">
+                <div class='form-group m-2'>
+                    <label for='nombre'>Nombre</label>
+                    <input type='nombre' class='form-control' id='nombre' name='nombre' placeholder="Nombre de la temporada" value="<?php echo $temp->nombre ?>" required>
+                </div>
+                <button type='submit' class='btn btn-danger m-2'>Editar</button>
+            </div>
+        </div>
+    </form>
+<?php endforeach ?>
+<?php require_once 'templates/layout/footer.phtml' ?>

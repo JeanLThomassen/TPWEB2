@@ -1,11 +1,3 @@
-<head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
 <?php require 'templates/layout/header.phtml' ?>
 <div class="dropdown m-2">
     <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -27,20 +19,20 @@
         <?= $error ?>
     </div>
 <?php endif ?>
-<ul class="text-box-g rounded-2 p-3">
+<ul class="text-box-g rounded-2 p-3 d-flex flex-wrap">
     <?php foreach ($caps as $cap): ?>
-        <li class="list-item item-task rounded-2 p-3 m-1 d-grid gap-1">
+        <li class="list-item item-task rounded-2 p-3 m-1 d-grid gap-1 col-12 col-sm-6 col-md-4 col-lg-3">
             <div class="d-flex flex-column">
                 <a href="cap/<?php echo $cap->id ?>">
                     <b class="h4 fw-bold d-grid gap-1"><?php echo $cap->nombre ?></b>
                     <b class="fw-light"><?php echo $cap->titulo ?></b>
                 </a>
-                <div class="d-flex flex-row d-grid gap-1">
-                    <?php if ($this->user): ?>
+                <?php if ($this->user): ?>
+                    <div class="d-flex flex-row d-grid gap-1">
                         <button type="button" class="btn btn-primary m-1" onclick="editCaps()">Editar</button>
                         <button type="button" class="btn btn-danger m-1" onclick="deleteCaps(<?php echo $cap->id ?>)">Eliminar</button>
-                    <?php endif ?>
-                </div>
+                    </div>
+                <?php endif ?>
             </div>
         </li>
     <?php endforeach ?>

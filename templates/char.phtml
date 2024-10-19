@@ -8,10 +8,10 @@
 
 <?php require 'templates/layout/header.phtml' ?>
 <?php foreach ($char as $char): ?>
-    <div class="container text-box-g rounded-4 p-3">
-        <div class="d-flex justify-content-between align-items-center">
-            <p class="h1 p-2 flex-grow-1 text-center"><?php echo $char->nombre ?></p>
-            <img src="<?php echo $char->imagen; ?>" alt="<?php echo $char->nombre; ?>" class="rounded-4" style="max-width:300px; max-height:300px;">
+    <div class="container text-box-g rounded-4 p-3 mt-3 mb-3">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <p class="h1 p-2 text-center flex-grow-1"><?php echo $char->nombre ?></p>
+            <img src="<?php echo $char->imagen; ?>" alt="<?php echo $char->nombre; ?>" class="rounded-4 img-fluid" style="max-width:300px; max-height:300px;">
         </div>
         <p class="p-4"><?php echo $char->descripcion ?></p>
     </div>
