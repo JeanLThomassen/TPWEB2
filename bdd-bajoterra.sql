@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2024 a las 01:00:21
+-- Tiempo de generación: 13-11-2024 a las 00:10:26
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -26,9 +26,6 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `capitulos`
 --
--- Creación: 15-10-2024 a las 22:59:12
--- Última actualización: 15-10-2024 a las 22:59:28
---
 
 CREATE TABLE `capitulos` (
   `id` bigint(20) NOT NULL,
@@ -37,12 +34,6 @@ CREATE TABLE `capitulos` (
   `video` varchar(400) NOT NULL,
   `temporada` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- RELACIONES PARA LA TABLA `capitulos`:
---   `temporada`
---       `temporada` -> `id`
---
 
 --
 -- Volcado de datos para la tabla `capitulos`
@@ -60,9 +51,6 @@ INSERT INTO `capitulos` (`id`, `titulo`, `descripcion`, `video`, `temporada`) VA
 --
 -- Estructura de tabla para la tabla `personajes`
 --
--- Creación: 15-10-2024 a las 16:03:21
--- Última actualización: 15-10-2024 a las 21:52:52
---
 
 CREATE TABLE `personajes` (
   `id` bigint(20) NOT NULL,
@@ -70,10 +58,6 @@ CREATE TABLE `personajes` (
   `descripcion` varchar(500) NOT NULL,
   `imagen` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- RELACIONES PARA LA TABLA `personajes`:
---
 
 --
 -- Volcado de datos para la tabla `personajes`
@@ -89,24 +73,17 @@ INSERT INTO `personajes` (`id`, `nombre`, `descripcion`, `imagen`) VALUES
 --
 -- Estructura de tabla para la tabla `temporada`
 --
--- Creación: 15-10-2024 a las 16:03:21
--- Última actualización: 15-10-2024 a las 22:59:28
---
 
 CREATE TABLE `temporada` (
-  `id` bigint(20) NOT NULL,
+  `id_temporada` bigint(20) NOT NULL,
   `nombre` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- RELACIONES PARA LA TABLA `temporada`:
---
 
 --
 -- Volcado de datos para la tabla `temporada`
 --
 
-INSERT INTO `temporada` (`id`, `nombre`) VALUES
+INSERT INTO `temporada` (`id_temporada`, `nombre`) VALUES
 (1, 'Temporada 1'),
 (2, 'Temporada 2'),
 (5, 'Temporada 3'),
@@ -118,18 +95,12 @@ INSERT INTO `temporada` (`id`, `nombre`) VALUES
 --
 -- Estructura de tabla para la tabla `usuarios`
 --
--- Creación: 15-10-2024 a las 16:03:21
---
 
 CREATE TABLE `usuarios` (
   `id` int(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- RELACIONES PARA LA TABLA `usuarios`:
---
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -159,7 +130,7 @@ ALTER TABLE `personajes`
 -- Indices de la tabla `temporada`
 --
 ALTER TABLE `temporada`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_temporada`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -187,7 +158,7 @@ ALTER TABLE `personajes`
 -- AUTO_INCREMENT de la tabla `temporada`
 --
 ALTER TABLE `temporada`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_temporada` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -203,7 +174,7 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `capitulos`
 --
 ALTER TABLE `capitulos`
-  ADD CONSTRAINT `capitulos_ibfk_1` FOREIGN KEY (`temporada`) REFERENCES `temporada` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `capitulos_ibfk_1` FOREIGN KEY (`temporada`) REFERENCES `temporada` (`id_temporada`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

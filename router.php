@@ -1,6 +1,7 @@
 <?php
 require_once 'libs/response.php';
 require_once 'app/middlewares/session.auth.middleware.php';
+require_once 'app/middlewares/verify.auth.middleware.php';
 require_once 'app/controllers/cap.controller.php';
 require_once 'app/controllers/season.controller.php';
 require_once 'app/controllers/char.controller.php';
@@ -94,6 +95,7 @@ switch ($params[0]) {
 
     case 'add':
         sessionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
         $def = 'caps';
         if (!empty($params[1])) {
             $def = $params[1];
@@ -134,6 +136,7 @@ switch ($params[0]) {
 
     case 'delete':
         sessionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
         $def = 'caps';
         if (!empty($params[1])) {
             $def = $params[1];
@@ -160,6 +163,7 @@ switch ($params[0]) {
 
     case 'edit':
         sessionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
         $def = 'caps';
         if (!empty($params[1])) {
             $def = $params[1];
@@ -197,7 +201,6 @@ switch ($params[0]) {
         $controller->editChar($params[1]);
         break;
     default: 
-        sessionAuthMiddleware($res);
         $controller = new CapController($res);
         $controller->showHome();
         break;
