@@ -26,7 +26,7 @@ class AuthController{
 
         $userFromDB = $this->model->getUserByName($name);
         // name = admin
-        // pass = 123456
+        // pass = webadmin
         if($userFromDB && password_verify($password, $userFromDB->password)){
             session_start();
             $_SESSION['ID_USER'] = $userFromDB->id;
