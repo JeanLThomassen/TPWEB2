@@ -12,10 +12,10 @@
         <?= $error ?>
     </div>
 <?php endif ?>
-<form method='post' action="editcap" class="container-fluid">
+<?php foreach ($cap as $cap): ?>
+<form method='post' action="editcap/<?php echo $cap->id?>" class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-6 text-box-g m-2 p-3 rounded">
-            <?php foreach ($cap as $cap): ?>
             <div class='form-group m-2'>
                 <label for='titulo'>Titulo</label>
                 <input type='titulo' class='form-control' id='titulo' name='titulo' placeholder="Ingrese el titulo del capitulo" value="<?php echo $cap->titulo ?>" required>
@@ -35,9 +35,9 @@
                     <?php endforeach ?>
                 </select>
             </div>
-            <?php endforeach ?>
             <button type='submit' class='btn btn-danger m-2'>Actualizar</button>
         </div>
     </div>
 </form>
+<?php endforeach ?>
 <?php require_once 'templates/layout/footer.phtml' ?>
